@@ -1,0 +1,11 @@
+[project]
+name = "Probabilistic Graphical ML Models."
+version = "0.1.0"
+description = "An implementation of inference in probabilistic graphical models using junction trees."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Vighnesh Nayak", email = "vighneshnayak203@gmail.com" }
+]
+dependencies = [
+]
