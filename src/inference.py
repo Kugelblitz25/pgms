@@ -117,7 +117,6 @@ class Inference:
         Compute the top-k most probable assignments in the graphical model.
         """
         top_k_pots = self.junction_tree.get_top_k(self.k)
-        print(top_k_pots)
 
         results: list[dict[str, Any]] = []
         for assignment, pot in zip(top_k_pots.assignments, top_k_pots.potentials):
