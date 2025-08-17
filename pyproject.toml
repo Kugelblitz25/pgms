@@ -1,5 +1,5 @@
 [project]
-name = "Probabilistic Graphical ML Models."
+name = "pgms"
 version = "0.1.0"
 description = "An implementation of inference in probabilistic graphical models using junction trees."
 readme = "README.md"
@@ -8,4 +8,9 @@ authors = [
     { name = "Vighnesh Nayak", email = "vighneshnayak203@gmail.com" }
 ]
 dependencies = [
+]
+
+[dependency-groups]
+test = [
+    "pytest>=8.4.1",
 ]

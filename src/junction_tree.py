@@ -1,8 +1,8 @@
 from collections import defaultdict
 from heapq import heappop, heappush
 
-from graphs import Clique
-from variables import Assignment, Potential
+from .graphs import Clique
+from .variables import Assignment, Potential
 
 
 class JTree:

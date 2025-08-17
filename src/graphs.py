@@ -1,4 +1,4 @@
-from variables import Potential, Variable
+from .variables import Potential, Variable
 
 
 class UGraph:
