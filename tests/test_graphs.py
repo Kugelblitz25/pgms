@@ -34,3 +34,40 @@ def test_clique_creation():
     nodes = [Variable(i) for i in range(3)]
     clique = Clique(nodes)
     assert len(clique.nodes) == 3
+
+
+def test_empty_graph():
+    with pytest.raises(AssertionError, match="at least one node"):
+        _ = UGraph([])
+
+
+def test_single_node_graph():
+    var = Variable(0)
+    graph = UGraph([var])
+    mcs_order = graph.get_MCS_order()
+    assert mcs_order == [var]
+
+
+def test_clique_shared_variables():
+    var1, var2, var3 = Variable(0), Variable(1), Variable(2)
+    clique1 = Clique([var1, var2])
+    clique2 = Clique([var2, var3])
+
+    shared = clique1.shared(clique2)
+    assert shared == {var2}
+
+
+def test_clique_includes():
+    var1, var2, var3 = Variable(0), Variable(1), Variable(2)
+    clique = Clique([var1, var2, var3])
+
+    assert clique.includes({var1, var2})
+    assert not clique.includes({var1, Variable(4)})
+
+
+def test_clique_comparison():
+    var1, var2 = Variable(0), Variable(1)
+    clique1 = Clique([var1])
+    clique2 = Clique([var2])
+
+    assert (clique1 < clique2) or (clique2 < clique1)

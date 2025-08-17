@@ -6,6 +6,7 @@ class UGraph:
 
     def __init__(self, nodes: list[Variable]) -> None:
         """Initializes an undirected graph."""
+        assert len(nodes) > 0, "Graph must have at least one node."
         self.nodes = nodes
 
     def add_edge(self, node1: Variable, node2: Variable) -> None:
