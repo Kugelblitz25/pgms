@@ -13,7 +13,7 @@ class JTree:
         self.cliques = cliques
         clique_graph = self.get_graph()
         self.MST(clique_graph)
-        
+
         self.infered: dict[Assignment, Potential] = {}
 
     def get_graph(self) -> dict[Clique, list[tuple[int, Clique]]]:
@@ -53,8 +53,10 @@ class JTree:
                     heappush(heap, (next_weight, c2, neighbour))
 
         if len(visited) < len(self.cliques):
-            raise ValueError("Graph is disconnected. Cannot construct a valid junction tree.")
-        
+            raise ValueError(
+                "Graph is disconnected. Cannot construct a valid junction tree."
+            )
+
     def message_pass(self, root: Clique, parent: Clique | None = None) -> None:
         """Performs message passing from leaves to root."""
         for child in root.neighbours:
