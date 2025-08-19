@@ -7,8 +7,7 @@ requires-python = ">=3.10"
 authors = [
     { name = "Vighnesh Nayak", email = "vighneshnayak203@gmail.com" }
 ]
-dependencies = [
-]
+dependencies = []
 
 [dependency-groups]
 test = [

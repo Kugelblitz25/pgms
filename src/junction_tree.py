@@ -1,5 +1,6 @@
 from collections import defaultdict
 from heapq import heappop, heappush
+from typing import Optional
 
 from .graphs import Clique
 from .variables import Assignment, Potential
@@ -57,7 +58,7 @@ class JTree:
                 "Graph is disconnected. Cannot construct a valid junction tree."
             )
 
-    def message_pass(self, root: Clique, parent: Clique | None = None) -> None:
+    def message_pass(self, root: Clique, parent: Optional[Clique] = None) -> None:
         """Performs message passing from leaves to root."""
         for child in root.neighbours:
             if child == parent:
@@ -77,7 +78,7 @@ class JTree:
     def inference(self, vals: Assignment) -> Potential:
         """Performs inference given evidence."""
 
-        def pass_evidence(root: Clique, parent: Clique | None = None) -> Potential:
+        def pass_evidence(root: Clique, parent: Optional[Clique] = None) -> Potential:
             var_vals = Assignment({k: vals[k] for k in root.nodes if k in vals})
             tot_potential = root.potential.get_potential(var_vals)
             assert (
@@ -94,7 +95,7 @@ class JTree:
     def get_top_k(self, k: int) -> Potential:
         """Gets the top k most probable assignments."""
 
-        def bfs(root: Clique, parent: Clique | None = None) -> Potential:
+        def bfs(root: Clique, parent: Optional[Clique] = None) -> Potential:
             top_k_pots = root.potential
             for child in root.neighbours:
                 if child == parent:
