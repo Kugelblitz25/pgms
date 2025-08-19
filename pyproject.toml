@@ -10,6 +10,9 @@ authors = [
 dependencies = []
 
 [dependency-groups]
+debug = [
+    "tuna>=0.5.11",
+]
 test = [
     "pytest>=8.4.1",
 ]

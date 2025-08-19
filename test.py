@@ -4,6 +4,7 @@ import time
 from typing import Any
 
 from src.inference import Inference
+import cProfile
 
 
 def load_test_case(file_path: str) -> list[dict[str, Any]]:
@@ -68,7 +69,12 @@ def main():
         description="Run inference test cases from a JSON file."
     )
     parser.add_argument("file_path", type=str, help="Path to the JSON test case file.")
+    parser.add_argument("--debug", action="store_true", help="Enable profiling and save to .prof file")
     args = parser.parse_args()
+
+    if args.debug:
+        profiler = cProfile.Profile()
+        profiler.enable()
 
     try:
         test_data = load_test_case(args.file_path)
@@ -83,6 +89,11 @@ def main():
         )
 
     print(f"Total inference time: {total_time:.4f} seconds")
+
+    if args.debug:
+        profiler.disable()
+        profiler.dump_stats("profile_results.prof")
+        print("Profiling results saved to profile_results.prof")
 
 
 if __name__ == "__main__":
